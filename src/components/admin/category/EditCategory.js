@@ -12,8 +12,8 @@ function EditCategory(props) {
 
         const category_id = props.match.params.id;
         axios.get(`/api/category/${category_id}`).then(res => {
-            if (res.data.status === 200) {
-                setCategory(res.data.category);
+            if (res.data.success === true) {
+                setCategory(res.data.data);
             }
             else if (res.data.status === 404) {
                 swal("Error", res.data.message, "error");

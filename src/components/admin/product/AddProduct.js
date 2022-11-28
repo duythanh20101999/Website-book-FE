@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import { numberFormat } from '../../../configs/constants';
 
 function AddProduct() {
     const [categorylist, setCategorylist] = useState([]);
@@ -113,7 +114,7 @@ function AddProduct() {
                                 <input name="authorname" onChange={handleInput} value={productInput.authorname} className="form-control"></input>
                             </div>
                             <div className="form-group mb-3">
-                                <label>Giá</label>
+                                <label>Giá (Định dạng: {numberFormat(productInput.price)})</label>
                                 <input name="price" type="number" onChange={handleInput} value={productInput.price} className="form-control"></input>
                             </div>
                             <div className="form-group mb-3">

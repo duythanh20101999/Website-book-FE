@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import { numberFormat } from '../../../configs/constants';
 
 function EditProduct(props) {
     const history = useHistory();
@@ -66,16 +67,7 @@ function EditProduct(props) {
                 setError([]);
                 history.push('/admin/view-product');
             }
-            // else if(res.data.status === 422)
-            // {
-            //     swal("All Fields are mandetory","","error");
-            //     setError(res.data.errors);
-            // }
-            // else if(res.data.status === 404)
-            // {
-            //     swal("Error",res.data.message,"error");
-            //     history.push('/admin/view-product');
-            // }
+            
         });
 
     }
@@ -120,7 +112,7 @@ function EditProduct(props) {
                                 <input name="authorname" type="text" onChange={handleInput} value={bookInput.authorname} className="form-control"></input>
                             </div>
                             <div className="form-group mb-3">
-                                <label>Giá</label>
+                                <label>Giá (Định dạng: {numberFormat(bookInput.price)})</label>
                                 <input name="price" type="number" onChange={handleInput} value={bookInput.price} className="form-control"></input>
                             </div>
                             <div className="form-group mb-3">

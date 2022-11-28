@@ -13,7 +13,7 @@ function Navbar() {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('auth_name');
         history.push('/login');
-
+        window.location.reload();
     }
 
     var AuthButtons = '';
