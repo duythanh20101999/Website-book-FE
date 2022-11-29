@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { APP_BASE_URL } from '../../../configs/constants';
@@ -9,6 +9,7 @@ function OrderDetail(props) {
     const history = useHistory();
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState({});
+    const [isUpdate, setIsUpdate] = useState(false);
 
     useEffect(() => {
 
@@ -24,18 +25,40 @@ function OrderDetail(props) {
             setLoading(false);
         });
 
-    }, [props.match.params.id, history]);
+    }, [props.match.params.id, history, isUpdate]);
+
+    const changeStatus = (id) =>{
+        axios.get(`/api/admin/order/change_status/${id}`).then(res => {
+            if (res.data.success === true) {
+                swal("Success", res.data.message, "success");
+                setIsUpdate(oldState => !oldState);
+                history.push('/admin')
+            }else{
+                swal("Warning", res.data.message, "warning");
+            }
+            
+        });
+
+    }
         
 
     var display_Productdata = "";
+    var setButtonChangeStatus="";
     if (loading) {
         return <h4>View Products Loading...</h4>
     }
     else {
+
+        if (order.status !== "Đã thanh toán"){
+            setButtonChangeStatus = (
+                <button onClick={()=>changeStatus(order.id)} className='btn btn-success btn-sm'>Cập nhật trạng thái</button>
+            )
+        }
+        
         display_Productdata = order.books.map((item) => {
 
             return (
-                <div className="card shadow-0 border mb-4">
+                <div key={item.id} className="card shadow-0 border mb-4">
                     <div className="card-body">
                         <div className="row">
                             <div className="col-md-2">
@@ -79,6 +102,7 @@ function OrderDetail(props) {
                                 <div className="card-body p-4">
                                     <div className="d-flex justify-content-between align-items-center mb-4">
                                         <p className="lead fw-normal mb-0" style={{ color: '#a8729a' }}>{order.status}</p>
+                                        {setButtonChangeStatus}
                                     </div>
                                     <div className="d-flex justify-content-between pt-2 mb-4">
                                         <p className="fw-bold mb-0">Người nhận: <span style={{ color: "#6c757d" }}>{order.name}</span></p>

@@ -47,7 +47,6 @@ function Login() {
 
         })
             .catch(err => {
-                //console.log(err);
                 swal("Warning", "Mật khẩu không hợp lệ", "warning");
             });
 

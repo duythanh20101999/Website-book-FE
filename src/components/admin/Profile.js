@@ -1,4 +1,4 @@
-import React, { useEffect, useState, history } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -21,7 +21,6 @@ function Profile() {
     }, [isUpdate]);
 
     const blockUser = (id) =>{
-        console.log(id);
         axios.get(`/api/admin/block/${id}`).then(res => {
             if (res.data.success === true) {
                 swal("Success", res.data.message, "success");

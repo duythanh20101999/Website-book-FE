@@ -102,24 +102,24 @@ function AddProduct() {
                             </div>
                             <div className="form-group mb-3">
                                 <label>Tên sách</label>
-                                <input type="text" name="name" onChange={handleInput} value={productInput.name} className="form-control" />
+                                <input type="text" name="name" onChange={handleInput} value={productInput.name} className="form-control" required/>
                                 <small className="text-danger">{errorlist.name}</small>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Mô tả</label>
-                                <textarea name="description" onChange={handleInput} value={productInput.description} className="form-control"></textarea>
+                                <textarea name="description" onChange={handleInput} value={productInput.description} className="form-control" required></textarea>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Tác giả</label>
-                                <input name="authorname" onChange={handleInput} value={productInput.authorname} className="form-control"></input>
+                                <input name="authorname" onChange={handleInput} value={productInput.authorname} className="form-control" required></input>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Giá (Định dạng: {numberFormat(productInput.price)})</label>
-                                <input name="price" type="number" onChange={handleInput} value={productInput.price} className="form-control"></input>
+                                <input name="price" type="number" onChange={handleInput} value={productInput.price} className="form-control" required></input>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Hình ảnh</label>
-                                <input type="file" name="img" onChange={handleImage} className="form-control" />
+                                <input type="file" name="img" onChange={handleImage} className="form-control" required/>
                             </div>
                         
                         </div>

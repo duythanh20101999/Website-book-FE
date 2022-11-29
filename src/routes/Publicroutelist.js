@@ -14,7 +14,6 @@ import Thankyou from '../components/frontend/Thankyou';
 import Verify from '../components/frontend/auth/Verify';
 import ForgotPassword from '../components/frontend/auth/ForgotPassword';
 import ChangePassword from '../components/frontend/auth/ChangePassword';
-import OrderDetail from '../components/admin/order/OrderDetail';
 
 const publicRoutesList = [
     { path: '/', exact: true, name: 'Home', component: Home },

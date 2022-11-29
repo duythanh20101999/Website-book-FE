@@ -12,7 +12,6 @@ function EditProduct(props) {
 
     });
     const [pricture, setPicture] = useState([]);
-    const [errorlist, setError] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const handleInput = (e) => {
@@ -64,7 +63,6 @@ function EditProduct(props) {
         axios.put(`/api/admin/update_book/${book_id}`, formData).then(res => {
             if (res.data.success === true) {
                 swal("Success", res.data.message, "success");
-                setError([]);
                 history.push('/admin/view-product');
             }
             
@@ -101,19 +99,19 @@ function EditProduct(props) {
                             </div>
                             <div className="form-group mb-3">
                                 <label>Tên sách</label>
-                                <input type="text" name="name" onChange={handleInput} value={bookInput.name} className="form-control" />
+                                <input type="text" name="name" onChange={handleInput} value={bookInput.name} className="form-control" required/>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Mô tả</label>
-                                <textarea name="description" onChange={handleInput} value={bookInput.description} className="form-control"></textarea>
+                                <textarea name="description" onChange={handleInput} value={bookInput.description} className="form-control" required></textarea>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Tác giả</label>
-                                <input name="authorname" type="text" onChange={handleInput} value={bookInput.authorname} className="form-control"></input>
+                                <input name="authorname" type="text" onChange={handleInput} value={bookInput.authorname} className="form-control" required></input>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Giá (Định dạng: {numberFormat(bookInput.price)})</label>
-                                <input name="price" type="number" onChange={handleInput} value={bookInput.price} className="form-control"></input>
+                                <input name="price" type="number" onChange={handleInput} value={bookInput.price} className="form-control" required></input>
                             </div>
                             <div className="form-group mb-3">
                                 <label>Hình ảnh</label>
